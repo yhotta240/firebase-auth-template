@@ -45,24 +45,29 @@ npm install react-bootstrap bootstrap
 
 
 ## Firebaseプロジェクトのセットアップ
-まず、Firebaseコンソールにログインし、[新しいプロジェクト](https://console.firebase.google.com/u/0/)を作成します。
+Firebaseコンソールにログインし、[新しいプロジェクト](https://console.firebase.google.com/u/0/)を作成します。<br>
+![プロジェクトの作成 - Firebase コンソール - console.firebase.google.com.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/3680988/4977138e-1f25-5b68-f4b4-ec8797ae0517.png)
 
-次に作成したプロジェクトで自身のウェブアプリにFirebaseを追加します。Firebase SDKの構成オブジェクトをReactアプリケーションに追加します。
-```bash
-npm install firebase
-```
+プロジェクトを作成したら、Firebase Authenticationを有効にします（必要に応じてCloud Firestoreなどの他のFirebaseサービスも追加で有効にしておくと便利です）。
+今回はメール/パスワードとGoogle認証を有効にしておきます。
+![FireShot Capture 011 - firebase-auth-app - Authentication - ログイン方法 - Firebase コンソール_ - console.firebase.google.com.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/3680988/5c95d603-ec7b-f247-5820-4128c40958f2.png)
+
+Firebaseプロジェクトにアプリを登録し、自身のウェブアプリにFirebaseを追加します。
 ![FireShot Capture 012 - firebase-auth-app - アプリの追加 - Firebase コンソール - console.firebase.google.com.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/3680988/090f960d-1d5f-e58c-8e4f-6eb7e93f2f3b.png)
 
 
-Firebase Authenticationを有効にします（必要に応じてCloud Firestoreなどの他のFirebaseサービスも追加で有効にしておくと便利です）。
-今回はメール/パスワードとGoogle認証を有効にしておきます。
-![FireShot Capture 011 - firebase-auth-app - Authentication - ログイン方法 - Firebase コンソール_ - console.firebase.google.com.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/3680988/5c95d603-ec7b-f247-5820-4128c40958f2.png)
+Firebase SDKの構成オブジェクトをReactに追加します。
+
+```bash
+npm install firebase
+```
 
 Firebaseコンソールから取得した設定を使用して、srcディレクトリ内にfirebase.jsファイルを作成します。
 
 
 ![スクリーンショット 2024-03-31 203003.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/3680988/f0731f72-999f-1d95-3cb6-79f7abb2c1bb.png)
 
+firebase.jsファイルに以下の内容を追加します。
 ```react:firebase.jsx
 // firebase.js
 
@@ -83,8 +88,16 @@ const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 export { auth, provider};
 ```
+FirebaseのAPIキーやその他の機密情報を.env.localファイルに保存します。このファイルはGitなどのバージョン管理システムから除外されるため、機密情報が外部に公開される心配はありません。.env.localファイルは以下のようになります。
 
-
+```makefile:.env.local
+REACT_APP_FIREBASE_API_KEY=your-api-key
+REACT_APP_FIREBASE_AUTH_DOMAIN=your-auth-domain
+REACT_APP_FIREBASE_PROJECT_ID=your-project-id
+REACT_APP_FIREBASE_STORAGE_BUCKET=your-storage-bucket
+REACT_APP_FIREBASE_MESSAGING_SENDER_ID=your-messaging-sender-id
+REACT_APP_FIREBASE_APP_ID=your-app-id
+```
 
 https://firebase.google.com/docs/auth/web/google-signin?hl=ja
 
