@@ -460,8 +460,10 @@ Firebaseの認証機能を利用することで、信頼性の高い認証シス
 ---
 コードはGitHubでご覧いただけます：[GitHubリンク](https://github.com/yhotta240/firebase-auth-template)
 
-
 https://github.com/yhotta240/firebase-auth-template
+
+qiitaで同じ内容を記載しています。<br/>
+https://qiita.com/yhotta240/items/0e83cee50db2cf9a091e
 
 ## 参考
 
